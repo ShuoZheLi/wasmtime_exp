@@ -25,12 +25,15 @@ fn main() -> Result<()> {
     let mut store = Store::new(&engine, wasi);
 
     // Instantiate our module with the imports we've created, and run it.
-    let module = Module::from_file(&engine, "/home/shuozhe/Documents/wasm_final/example.wasm")?;
+    let module = Module::from_file(&engine, "/media/shuozhe/Disk_Bottom_4TB/wasm/wasmtime_exp/example.wasm")?;
     linker.module(&mut store, "", &module)?;
+    // time the execution
+    let start = std::time::Instant::now();
     linker
         .get_default(&mut store, "")?
         .typed::<(), ()>(&store)?
         .call(&mut store, ())?;
+    println!("Elapsed time: {:?}", start.elapsed());
 
     Ok(())
 }
