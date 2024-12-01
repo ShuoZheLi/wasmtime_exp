@@ -5,11 +5,11 @@ use wasmtime::*;
 fn main() -> Result<()> {
     // Define the WASI functions globally on the `Config`.
 
-    let mut config = Config::new();
-    config.memory_guard_size(0);
-    let engine = Engine::new(&config)?;
+    // let mut config = Config::new();
+    // config.memory_guard_size(0);
+    // let engine = Engine::new(&config)?;
 
-    // let engine = Engine::default();
+    let engine = Engine::default();
 
     
     let mut linker = Linker::new(&engine);
@@ -25,8 +25,9 @@ fn main() -> Result<()> {
     let mut store = Store::new(&engine, wasi);
 
     // Instantiate our module with the imports we've created, and run it.
-    let module = Module::from_file(&engine, "/media/shuozhe/Disk_Bottom_4TB/wasm/wasmtime_exp/example.wasm")?;
+    let module = Module::from_file(&engine, "/home/shuozhe/Documents/wasmtime_exp/example.wasm")?;
     linker.module(&mut store, "", &module)?;
+
     // time the execution
     let start = std::time::Instant::now();
     linker

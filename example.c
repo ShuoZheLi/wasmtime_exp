@@ -75,6 +75,19 @@ void buffer_overflow() {
     vulnerable_stack_function();
 }
 
+void buffer_overflow2() {
+    // obtain the address of a pointer
+    int *ptr = (int *)malloc(sizeof(int));
+    // increase the address of the pointer until buffer overflow
+    while (1) {
+        printf("Address: %p\n", ptr);
+        // read the value of the address
+        printf("Value: %d\n", *ptr);
+        // increase the pointer by 1024 bytes
+        ptr += 1024;
+    }
+}
+
 void use_after_free() {
     // void *buffer_1 = malloc(8);
     // void *buffer_2 = malloc(8);
@@ -89,6 +102,7 @@ void use_after_free() {
 int matrixA[SIZE][SIZE], matrixB[SIZE][SIZE], result[SIZE][SIZE];
 void performance_test()
 {
+    // clock_t start = clock();
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             matrixA[i][j] = rand() % 100;
@@ -104,11 +118,16 @@ void performance_test()
             }
         }
     }
+    // clock_t end = clock();
+    // double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+    // printf("Time taken: %f seconds\n", time_taken);
+
 }
 
 int main() {
     // printf("Demonstrating a buffer overflow vulnerability.\n");
-    // buffer_overflow();
+    // // buffer_overflow();
+    // buffer_overflow2();
     // printf("After buffer overflow.\n");
 
     // printf("Demonstrating a UAF vulnerability.\n");
@@ -116,10 +135,8 @@ int main() {
     // printf("After UAF.\n");
 
     printf("Demonstrating a performance issue.\n");
-    // time_t start = time(NULL);
     performance_test();
-    // time_t end = time(NULL);
-    // printf("Time taken: %ld seconds\n", end - start);
+    
 
     // // create an arry of 10 integers
     // int arr[10];
