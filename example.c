@@ -88,6 +88,76 @@ void buffer_overflow2() {
     }
 }
 
+// void inner_overflow() {
+//     char buffer1[8];  // Buffer of size 8
+//     char buffer2[8];  // Another buffer adjacent to buffer1
+
+//     // Initializing both buffers
+//     strcpy(buffer1, "1234567");
+//     strcpy(buffer2, "ABCDEFG");
+
+//     printf("Before overflow:\n");
+//     printf("buffer1: %s\n", buffer1);
+//     printf("buffer2: %s\n", buffer2);
+//     // print the address of buffer1 and buffer2
+//     printf("buffer1: %p\n", buffer1);
+//     printf("buffer2: %p\n", buffer2);
+
+//     // Intentional buffer overflow: Overflowing buffer1 by 2 bytes
+//     strcpy(buffer2, "ABCDEFGHIJ"); 
+
+//     printf("\nAfter overflow:\n");
+//     printf("buffer1: %s\n", buffer1); // This will be corrupted
+//     printf("buffer2: %s\n", buffer2);  
+// }
+
+void inner_overflow() {
+    char buffer1[8];  // Buffer of size 8
+    char buffer2[8];  // Another buffer adjacent to buffer1
+
+    // Initializing both buffers
+    strcpy(buffer1, "1234567");
+    strcpy(buffer2, "ABCDEFG");
+
+    printf("Before overflow:\n");
+    printf("buffer1: %s\n", buffer1);
+    printf("buffer2: %s\n", buffer2);
+    // print the address of buffer1 and buffer2
+    printf("buffer1: %p\n", buffer1);
+    printf("buffer2: %p\n", buffer2);
+
+    // Intentional buffer overflow: Overflowing buffer1 by 2 bytes
+    strcpy(buffer2, "ABCDEFGHIJ"); 
+
+    printf("\nAfter overflow:\n");
+    // This will be corrupted
+    printf("buffer1: %s\n", buffer1); 
+    printf("buffer2: %s\n", buffer2);  
+}
+
+void inner_overflow2() {
+    char buffer1[8];  // Buffer of size 8
+    char buffer2[8];  // Another buffer adjacent to buffer1
+
+    // Initializing both buffers
+    strcpy(buffer1, "1234567");
+    strcpy(buffer2, "ABCDEFG");
+
+    printf("Before overflow:\n");
+    printf("buffer1: %s\n", buffer1);
+    printf("buffer2: %s\n", buffer2);
+    // print the address of buffer1 and buffer2
+    printf("buffer1: %p\n", buffer1);
+    printf("buffer2: %p\n", buffer2);
+
+    // Intentional buffer overflow: Overflowing buffer1 by 2 bytes
+    strcpy(buffer2, "ABCDEFGHIJ"); 
+
+    // This will be corrupted
+    printf("buffer1: %s\n", buffer1); 
+    printf("buffer2: %s\n", buffer2);  
+}
+
 void use_after_free() {
     // void *buffer_1 = malloc(8);
     // void *buffer_2 = malloc(8);
@@ -125,17 +195,19 @@ void performance_test()
 }
 
 int main() {
-    // printf("Demonstrating a buffer overflow vulnerability.\n");
+    printf("Demonstrating a buffer overflow vulnerability.\n");
     // // buffer_overflow();
     // buffer_overflow2();
-    // printf("After buffer overflow.\n");
+    // inner_overflow();
+    inner_overflow2();
+    printf("After buffer overflow.\n");
 
     // printf("Demonstrating a UAF vulnerability.\n");
     // use_after_free();
     // printf("After UAF.\n");
 
-    printf("Demonstrating a performance issue.\n");
-    performance_test();
+    // printf("Demonstrating a performance issue.\n");
+    // performance_test();
     
 
     // // create an arry of 10 integers
