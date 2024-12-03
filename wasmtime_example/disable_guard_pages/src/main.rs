@@ -11,6 +11,8 @@ fn main() -> Result<()> {
 
     let engine = Engine::default();
 
+    // get memory guard size of the engine
+    println!("Memory guard size: {}", engine.config());
     
     let mut linker = Linker::new(&engine);
     wasi_common::sync::add_to_linker(&mut linker, |s| s)?;
