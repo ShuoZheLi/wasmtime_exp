@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <limits.h>
-// #include <time.h>
+#include <time.h>
 int FLAG = 1;
 const char *SAFE = "SAFE\0";
 const char *UNSAFE = "UNSAFE\0";
@@ -173,11 +173,14 @@ void use_after_free() {
     vulnerable_heap_function();
 }
 
-#define SIZE 1024
-// #define SIZE 812
+#define SIZE 256
 int matrixA[SIZE][SIZE], matrixB[SIZE][SIZE], result[SIZE][SIZE];
 void performance_test()
 {
+    // void performance_test(int SIZE)
+    // int SIZE = 128;
+    // int matrixA[SIZE][SIZE], matrixB[SIZE][SIZE], result[SIZE][SIZE];
+
     // clock_t start = clock();
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
@@ -197,7 +200,6 @@ void performance_test()
     // clock_t end = clock();
     // double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
     // printf("Time taken: %f seconds\n", time_taken);
-
 }
 
 int main() {
@@ -213,6 +215,13 @@ int main() {
     // printf("After UAF.\n");
 
     // printf("Demonstrating a performance issue.\n");
+
+    // create an array of [128, 256, 512, 1024]
+    // int sizes[] = {128, 256, 512, 1024};
+    // for (int i = 0; i < 4; i++) {
+    //     performance_test(sizes[i]);
+    // }
+
     performance_test();
     
 

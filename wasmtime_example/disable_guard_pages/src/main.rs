@@ -12,7 +12,7 @@ fn main() -> Result<()> {
     let engine = Engine::default();
 
     // get memory guard size of the engine
-    println!("Memory guard size: {}", engine.config());
+    // println!("Memory guard size: {}", engine.config());
     
     let mut linker = Linker::new(&engine);
     wasi_common::sync::add_to_linker(&mut linker, |s| s)?;
@@ -27,7 +27,7 @@ fn main() -> Result<()> {
     let mut store = Store::new(&engine, wasi);
 
     // Instantiate our module with the imports we've created, and run it.
-    let module = Module::from_file(&engine, "/home/shuozhe/Documents/wasmtime_exp/example.wasm")?;
+    let module = Module::from_file(&engine, "/media/shuozhe/Disk_Bottom_4TB/wasm/wasmtime_exp/example.wasm")?;
     linker.module(&mut store, "", &module)?;
 
     // time the execution
