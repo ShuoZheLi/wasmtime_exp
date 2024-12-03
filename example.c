@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <limits.h>
 // #include <time.h>
 int FLAG = 1;
 const char *SAFE = "SAFE\0";
@@ -158,6 +159,11 @@ void inner_overflow2() {
     printf("buffer2: %s\n", buffer2);  
 }
 
+void check_bit(){
+    printf("%d bits\n", (int)(CHAR_BIT * sizeof(void *)));
+    printf("%d bits\n", sizeof(void*));
+}
+
 void use_after_free() {
     // void *buffer_1 = malloc(8);
     // void *buffer_2 = malloc(8);
@@ -195,12 +201,12 @@ void performance_test()
 }
 
 int main() {
-    // printf("Demonstrating a buffer overflow vulnerability.\n");
+    printf("Demonstrating a buffer overflow vulnerability.\n");
     // // buffer_overflow();
     // buffer_overflow2();
     // inner_overflow();
-    // inner_overflow2();
-    // printf("After buffer overflow.\n");
+    inner_overflow2();
+    printf("After buffer overflow.\n");
 
     // printf("Demonstrating a UAF vulnerability.\n");
     // use_after_free();
